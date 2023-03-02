@@ -11,6 +11,22 @@ export class App extends Component {
     filter: '',
   };
 
+componentDidMount() {
+    const storageContacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (storageContacts !== null) {
+      this.setState({
+        contacts: storageContacts,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContactHandler = ({ name, number }) => {
     const { contacts } = this.state;
     const newContact = { id: nanoid(), name, number };

@@ -12,6 +12,7 @@ class ContactForm extends Component {
     resetForm();
   };
 
+
   render() {
     return (
       <Formik
